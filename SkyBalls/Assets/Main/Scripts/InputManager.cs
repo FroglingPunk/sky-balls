@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using EventAggregation;
 
 namespace SkyBall
 {
@@ -8,6 +7,8 @@ namespace SkyBall
     {
 
         private Camera mainCamera;
+
+        static public event System.Action<Ball> onTappingOnBall;
 
 
 
@@ -29,7 +30,7 @@ namespace SkyBall
 
                     if(ball != null)
                     {
-                        EventAggregator.Publish(new Event_TapOnBall(ball));
+                        onTappingOnBall?.Invoke(ball);
                     }
                 }
             }

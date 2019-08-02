@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using EventAggregation;
 
 namespace SkyBall
 {
@@ -10,7 +9,8 @@ namespace SkyBall
         public bool useDefaultRules;
         [SerializeField]
         private GameRules rules;
-
+        [SerializeField]
+        private Ball ball_prefab;
 
         static private GameManager _instance;
 
@@ -19,6 +19,7 @@ namespace SkyBall
         private int score;
 
         static public float LeftTime { get { return _instance.leftTime; } }
+        static public event System.Action onTimeIsLeft;
         private float leftTime;
 
         private float currentBaseSpeed;
@@ -39,13 +40,13 @@ namespace SkyBall
                 rules = GameRules.DefaultGameRules;
             }
 
-            ballSpawner = new BallSpawner(Resources.Load<Ball>("Ball"));
+            ballSpawner = new BallSpawner(ball_prefab);
             leftTime = rules.levelDuration;
             currentBaseSpeed = Mathf.Lerp(rules.maxBallSpeed, rules.minBallSpeed, leftTime / rules.levelDuration);
 
             CalcSpawnBounds();
-            
-            EventAggregator.Subscribe<Event_TapOnBall>(OnTapOnBall);
+
+            InputManager.onTappingOnBall += OnTapOnBall;
 
             InvokeRepeating("SpawnBall", 0f, rules.levelDuration / rules.ballsAmount);
             InvokeRepeating("DecreaseOneSecond", 1f, 1f);
@@ -53,7 +54,7 @@ namespace SkyBall
 
         void OnDisable()
         {
-            EventAggregator.Unsubscribe<Event_TapOnBall>(OnTapOnBall);
+            InputManager.onTappingOnBall -= OnTapOnBall;
         }
 
 
@@ -67,7 +68,7 @@ namespace SkyBall
                 CancelInvoke("SpawnBall");
                 CancelInvoke("DecreaseOneSecond");
 
-                EventAggregator.Publish(new Event_TimeIsLeft());
+                onTimeIsLeft?.Invoke();
             }
         }
 
@@ -100,9 +101,8 @@ namespace SkyBall
         }
 
 
-        private void OnTapOnBall(IEventBase event_tapOnBall)
+        private void OnTapOnBall(Ball ball)
         {
-            Ball ball = (event_tapOnBall as Event_TapOnBall).ball;
             AddScore((int)(rules.scoreForBaseBall / ball.scale));
         }
 
@@ -111,7 +111,7 @@ namespace SkyBall
             score += increment;
             onScoreChange?.Invoke();
         }
-        
+
     }
 
 }

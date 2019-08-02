@@ -204,6 +204,8 @@ MonoBehaviour:
     maxBallScale: 1.5
     scoreForBaseBall: 20
     ballsAmount: 120
+  ball_prefab: {fileID: 3742468947620634241, guid: 5a2954433f4bb1945a57541ade89d94d,
+    type: 3}
 --- !u!4 &136077971
 Transform:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using EventAggregation;
 
-namespace SkyBall
+namespace SkyBall.UI
 {
 
     public class UIManager : MonoBehaviour
@@ -17,23 +16,22 @@ namespace SkyBall
         private UIGameOverPanel gameoverPanel;
 
 
-
         void Start()
         {
             gameoverPanel.Hide();
             timer.Show();
             scoreboard.Show();
 
-            EventAggregator.Subscribe<Event_TimeIsLeft>(OnTimeIsLeft);
+            GameManager.onTimeIsLeft += ShowGameOverPanel;
         }
 
         void OnDisable()
         {
-            EventAggregator.Unsubscribe<Event_TimeIsLeft>(OnTimeIsLeft);
+            GameManager.onTimeIsLeft -= ShowGameOverPanel;
         }
 
 
-        private void OnTimeIsLeft(IEventBase event_timeIsLeft)
+        private void ShowGameOverPanel()
         {
             gameoverPanel.Show();
             timer.Hide();

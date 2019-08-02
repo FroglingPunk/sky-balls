@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using EventAggregation;
 
 namespace SkyBall
 {
@@ -15,6 +14,8 @@ namespace SkyBall
         public float speed { private set; get; }
         public float scale { private set; get; }
 
+        public event System.Action<Ball> onGotToEnd;
+
 
         void Update()
         {
@@ -23,7 +24,7 @@ namespace SkyBall
 
             if (progress >= 1f)
             {
-                EventAggregator.Publish(new Event_BallGotEnd(this));
+                onGotToEnd?.Invoke(this);
             }
         }
 

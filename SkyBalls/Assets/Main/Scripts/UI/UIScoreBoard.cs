@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace SkyBall
+namespace SkyBall.UI
 {
 
     public class UIScoreBoard : MonoBehaviour

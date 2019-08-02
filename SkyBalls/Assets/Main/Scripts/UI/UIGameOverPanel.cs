@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace SkyBall
+namespace SkyBall.UI
 {
 
     public class UIGameOverPanel : MonoBehaviour
