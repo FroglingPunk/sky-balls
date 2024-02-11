@@ -3,10 +3,8 @@ using System;
 
 namespace SkyBall
 {
-
     public class BallSpawner : IDisposable
     {
-
         private Ball ball_prefab;
         private Stack<Ball> pool = new Stack<Ball>();
 
@@ -32,11 +30,10 @@ namespace SkyBall
             pool.Push(ball);
         }
 
+
         public void Dispose()
         {
             InputManager.onTappingOnBall -= AddToPool;
         }
-
     }
-
 }

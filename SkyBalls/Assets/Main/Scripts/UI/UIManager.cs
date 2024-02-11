@@ -2,18 +2,11 @@
 
 namespace SkyBall.UI
 {
-
     public class UIManager : MonoBehaviour
     {
-
-        [SerializeField]
-        private UITimer timer;
-
-        [SerializeField]
-        private UIScoreBoard scoreboard;
-
-        [SerializeField]
-        private UIGameOverPanel gameoverPanel;
+        [SerializeField] private UITimer timer;
+        [SerializeField] private UIScoreBoard scoreboard;
+        [SerializeField] private UIGameOverPanel gameoverPanel;
 
 
         void Start()
@@ -37,7 +30,5 @@ namespace SkyBall.UI
             timer.Hide();
             scoreboard.Hide();
         }
-
     }
-
 }

@@ -3,12 +3,9 @@ using UnityEngine.UI;
 
 namespace SkyBall.UI
 {
-
     public class UITimer : MonoBehaviour
     {
-
-        [SerializeField]
-        private Text time_text;
+        [SerializeField] private Text time_text;
         private int previousTime;
 
 
@@ -33,7 +30,5 @@ namespace SkyBall.UI
         {
             gameObject.SetActive(false);
         }
-
     }
-
 }

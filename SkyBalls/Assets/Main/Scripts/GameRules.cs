@@ -1,10 +1,8 @@
 ﻿namespace SkyBall
 {
-
     [System.Serializable]
     public class GameRules
     {
-
         public float levelDuration = 60f;
 
         public float minBallSpeed = 0.25f;
@@ -15,7 +13,6 @@
 
         public int scoreForBaseBall = 20;
         public int ballsAmount = 90;
-
 
 
         public GameRules(float levelDuration, float minBallSpeed, float maxBallSpeed, float minBallScale, float maxBallScale, int scoreForBaseBall, int ballsAmount)
@@ -32,11 +29,10 @@
             this.ballsAmount = ballsAmount;
         }
 
+
         static public GameRules DefaultGameRules
         {
             get { return new GameRules(60f, 0.25f, 0.5f, 0.5f, 2f, 20, 90); }
         }
-
     }
-
 }

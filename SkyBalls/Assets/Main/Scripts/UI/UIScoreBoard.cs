@@ -3,12 +3,9 @@ using UnityEngine.UI;
 
 namespace SkyBall.UI
 {
-
     public class UIScoreBoard : MonoBehaviour
     {
-
-        [SerializeField]
-        private Text score_text;
+        [SerializeField] private Text score_text;
 
 
         public void Show()
@@ -29,7 +26,5 @@ namespace SkyBall.UI
         {
             score_text.text = GameManager.Score.ToString();
         }
-
     }
-
 }

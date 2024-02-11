@@ -5,12 +5,10 @@ namespace SkyBall
 
     public class GameManager : MonoBehaviour
     {
-
         public bool useDefaultRules;
-        [SerializeField]
-        private GameRules rules;
-        [SerializeField]
-        private Ball ball_prefab;
+
+        [SerializeField] private GameRules rules;
+        [SerializeField] private Ball ball_prefab;
 
         static private GameManager _instance;
 
@@ -111,7 +109,5 @@ namespace SkyBall
             score += increment;
             onScoreChange?.Invoke();
         }
-
     }
-
 }

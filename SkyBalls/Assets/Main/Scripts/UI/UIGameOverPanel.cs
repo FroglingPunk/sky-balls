@@ -4,13 +4,9 @@ using UnityEngine.UI;
 
 namespace SkyBall.UI
 {
-
     public class UIGameOverPanel : MonoBehaviour
     {
-
-        [SerializeField]
-        private Text score_text;
-
+        [SerializeField] private Text score_text;
 
 
         public void Show()
@@ -18,7 +14,7 @@ namespace SkyBall.UI
             gameObject.SetActive(true);
             score_text.text = GameManager.Score.ToString();
         }
-    
+
         public void Hide()
         {
             gameObject.SetActive(false);
@@ -35,7 +31,5 @@ namespace SkyBall.UI
         {
             Application.Quit();
         }
-
     }
-
 }

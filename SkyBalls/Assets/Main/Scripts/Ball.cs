@@ -2,11 +2,8 @@
 
 namespace SkyBall
 {
-
     public class Ball : MonoBehaviour
     {
-
-        private Transform _trans;
         private Vector3 startPosition;
         private Vector3 endPosition;
         private float progress;
@@ -20,7 +17,7 @@ namespace SkyBall
         void Update()
         {
             progress += Time.deltaTime * speed;
-            _trans.position = Vector3.Lerp(startPosition, endPosition, progress);
+            transform.position = Vector3.Lerp(startPosition, endPosition, progress);
 
             if (progress >= 1f)
             {
@@ -31,7 +28,6 @@ namespace SkyBall
 
         public void Init(float scale, float speed, Vector3 startPosition, Vector3 endPosition, Color color)
         {
-            _trans = transform;
             progress = 0f;
 
             this.scale = scale;
@@ -39,8 +35,8 @@ namespace SkyBall
             this.startPosition = startPosition;
             this.endPosition = endPosition;
 
-            _trans.localScale = Vector3.one * scale;
-            _trans.position = startPosition;
+            transform.localScale = Vector3.one * scale;
+            transform.position = startPosition;
             GetComponent<Renderer>().material.color = color;
 
             gameObject.SetActive(true);
@@ -50,7 +46,5 @@ namespace SkyBall
         {
             gameObject.SetActive(false);
         }
-
     }
-
 }
